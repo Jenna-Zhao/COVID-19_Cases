@@ -77,6 +77,6 @@ df_daily = df_clean %>%
   ungroup()
 
 # save csv file ------------------------------------------------
-write.csv(df_daily, file = "data/derived/02_COVID-19_global_data_daily.csv")
+write.csv(df_daily, file = "data/derived/02_COVID-19_global_data_world.csv")
 # -------------------------------------------------------------------------
 
