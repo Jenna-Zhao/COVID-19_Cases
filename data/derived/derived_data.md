@@ -30,8 +30,8 @@ Our goal is to visualize the global impact of COVID-19 through two key visual re
 
 -   **Saving Cleaned Data**:
 
-    -   **Country Data**: Save the dataset containing both the cumulative and new counts of cases and deaths for each country, as a CSV file named [01_COVID-19_global_data_country.csv](data/derived/01_COVID-19_global_data_country.csv);
+    -   **Country Data**: Save the dataset containing both the cumulative and new counts of cases and deaths for each country, as a CSV file named [01_COVID-19_global_data_country.csv](01_COVID-19_global_data_country.csv);
 
-    -   **World Data**: Compute and record the total number of daily and cumulative cases and deaths worldwide into another CSV file named [02_COVID-19_global_data_world.csv](data/derived/02_COVID-19_global_data_world.csv).
+    -   **World Data**: Compute and record the total number of daily and cumulative cases and deaths worldwide into another CSV file named [02_COVID-19_global_data_world.csv](02_COVID-19_global_data_world.csv).
 
-The script [01_COVID-19_global_data.R](src/data-cleaning/01_COVID-19_global_data.R) contains all the code used in the data cleaning process.
+The script [01_COVID-19_global_data.R](../../src/data_cleaning/01_COVID-19_global_data.R) contains all the code used in the data cleaning process.

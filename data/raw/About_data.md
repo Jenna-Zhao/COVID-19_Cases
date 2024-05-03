@@ -1,6 +1,6 @@
 # About data
 
-This document outlines the key variables found in the raw data derived from the [WHO COVID-19 dashboard data](https://data.who.int/dashboards/covid19/data?n=c). We focus on the dataset [COVID-19_global_data.csv](data/raw/COVID-19_global_data.csv), which compiles weekly reports of cumulative and new COVID-19 cases and deaths submitted to WHO. The data spans from 05/01/2020 to 07/04/2024 and includes details for each country.
+This document outlines the key variables found in the raw data derived from the [WHO COVID-19 dashboard data](https://data.who.int/dashboards/covid19/data?n=c). We focus on the dataset [COVID-19_global_data.csv](COVID-19_global_data.csv), which compiles weekly reports of cumulative and new COVID-19 cases and deaths submitted to WHO. The data spans from 05/01/2020 to 07/04/2024 and includes details for each country.
 
 The main variable shows below:
 
