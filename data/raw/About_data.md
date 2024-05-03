@@ -10,20 +10,22 @@ The main variable shows below:
 
 -   `WHO_region`: Abbreviations for WHO regions, including:
 
-    -   **AFRO**: Regional Office for Africa
+    -   **AFRO**: Regional Office for Africa;
 
-    -   **AMRO**: Regional Office for the Americas
+    -   **AMRO**: Regional Office for the Americas;
 
-    -   **SEARO**: Regional Office for South-East Asia
+    -   **SEARO**: Regional Office for South-East Asia;
 
-    -   **EURO**: Regional Office for Europe
+    -   **EURO**: Regional Office for Europe;
 
-    -   **EMRO**: Regional Office for the Eastern Mediterranean
+    -   **EMRO**: Regional Office for the Eastern Mediterranean;
 
-    -   **WPRO**: Regional Office for the Western Pacific
+    -   **WPRO**: Regional Office for the Western Pacific;
 
     -   **Others**: Additional regions not categorized in the aforementioned list.
 
--   `New_cases` and `New_deaths`: Daily increments reported for new cases and deaths. These figures are subject to retrospective corrections to ensure accuracy based on new information received.
+        ![](who_regions.png)
+
+-   `New_cases` and `New_deaths`: Daily increments reported for new cases and deaths. These figures are subject to retrospective corrections to ensure accuracy based on new information received, sometimes resulting in negative values.
 
 -   `Cumulative_cases` and `Cumulative_deaths`: The total number of confirmed cases and deaths from COVID-19 up to the reporting date.
