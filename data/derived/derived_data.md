@@ -16,6 +16,8 @@ Our goal is to visualize the global impact of COVID-19 through two key visual re
 
 -   **Data Type Conversion**: Convert the `Date` column from "Character" to "Date" type to facilitate chronological operations.
 
+-   **Replacing Values**: The **`ifelse()`** function checks for conditions where **`WHO_region`** is either empty and replaces these with **`"OTHER"`**. This helps grouping operations in analysis or visualizations.
+
 -   **Handling Retrospective Corrections**: Replace negative values in the columns `New_cases` and `New_deaths`, which are used for retrospective corrections, with `NA`. This prepares the dataset for the imputation of more reasonable values.
 
 -   **Handling NA Values**: The dataset was first organised by country to ensure accurate regional analysis. Next, we handled `NA` values in the columns `New_cases` and `New_deaths` by following steps:

@@ -20,7 +20,9 @@ df_clean = df %>%
   ## change column names
   rename(all_of(lookup)) %>%
   ## change the class of column Date to date type
-  mutate(across(Date, ymd))
+  mutate(across(Date, ymd)) %>%
+  ## replacing "" with "OTHER"
+  mutate(WHO_region = ifelse(WHO_region %in% "", "OTHER", WHO_region))
 
 # Change all negative values to NA
 df_clean$New_cases = replace(df_clean$New_cases,
