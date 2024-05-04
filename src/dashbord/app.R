@@ -1,6 +1,13 @@
 # -----------------------------------------------------------
 # Script Name: app.R
-# Purpose: This script is used to ....
+# Purpose: This script creates an interactive Shiny dashboard to visualize COVID-19 data.
+#          The dashboard provides insights into COVID-19 cases and deaths globally,
+#          allowing users to filter data by date and country. Users can view cumulative data
+#          and daily statistics on an interactive world map and through line plots.
+#
+# Dependencies: shiny, shinythemes, dplyr, rworldmap, ggplot2
+# Usage: This script is intended to be run in an R environment with Shiny server capabilities.
+#        Ensure all dependencies are installed using install.packages() before running.
 # -----------------------------------------------------------
 
 # Load necessary packages
