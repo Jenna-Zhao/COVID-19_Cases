@@ -1,16 +1,24 @@
 # -----------------------------------------------------------
-# Script Name: ui
+# Script Name: app.R
 # Purpose: This script is used to ....
 # -----------------------------------------------------------
 
 # load package ------------------------------------------------
-library(shiny)
+library(shiny) # for shiny
 library(shinythemes)
-library(rworldmap)
-library(dplyr)
+library(dplyr) # for data chosen
+library(rworldmap) # drawing map
+library(ggplot2) # drawing line plots
 
+# read data
 df = read.csv("../../data/derived/01_COVID-19_global_data_country.csv")
+df_world = read.csv("../../data/derived/02_COVID-19_global_data_world.csv")
 
+# confirm Date Formatting in Data Frames
+df$Date = as.Date(df$Date)
+df_world$Date = as.Date(df_world$Date)
+
+# find first and last date in dataframe
 date_min = min(df$Date)
 date_max = max(df$Date)
 
@@ -37,6 +45,13 @@ ui = fluidPage(
                       margin-bottom: 5px; /* gap between panels */
                     }
                     .section-title {
+                      font-size: 24px; /* Main title size */
+                      font-weight: bold; /* Bold font */
+                      margin-bottom: 10px; /* space below the title */
+                    }
+                    .sub-title {
+                      font-size: 20px; /* subtitle size */
+                      font-weight: bold; /* Bold font */
                       margin-bottom: 10px; /* space below the title */
                     }
                     .vertical-space {
@@ -53,6 +68,13 @@ ui = fluidPage(
                       padding: 10px; /* padding inside the white background */
                       border-radius: 5px; /* rounded corners for the white background */
                       margin-bottom: 5px; /* space below the white background */
+                    }
+                    label[for='countryInput2'] {
+                      display: block;
+                      margin-bottom: 30px; /* Increase space below the label */
+                    }
+                    .selectize-control .selectize-input {
+                      margin-top: 5px; /* Adjust the top margin to create space */
                     }
                     "))
   ),
@@ -103,10 +125,41 @@ ui = fluidPage(
                           h3("Number of COVID-19 New Cases or Deaths")),
                       div(class = "panel-background",
                           fluidRow(
-                            column(width = 6),
-                            column(width = 6)
-                            ))),
-             tabPanel("Developers")
+                            column(width = 5,
+                                   sliderInput("slider2", "Date",
+                                               min = as.Date(date_min, "%Y-%m-%d"),
+                                               max = as.Date(date_max, "%Y-%m-%d"),
+                                               value = c(as.Date(date_min), as.Date(date_max)),
+                                               timeFormat = "%Y-%m-%d",
+                                               step = 7,
+                                               width = "70%"
+                                   )),
+                            column(width = 1),
+                            column(width = 3,
+                                   selectizeInput("countryInput2",
+                                                  "Country:",
+                                                  list(
+                                                    "Total",
+                                                    `Eastern Mediterranean` = country_list("EMRO"),
+                                                    `Europe` = country_list("EURO"),
+                                                    `Africa` = country_list("AFRO"),
+                                                    `Western Pacific` = country_list("WPRO"),
+                                                    `Americas` = country_list("AMRO"),
+                                                    `South-East Asia` = country_list("SEARO"),
+                                                    `Others` = c(country_list("OTHER"), country_list(""))),
+                                                  options = list(selectize = FALSE))),
+                            column(width = 3)
+                            ),
+                          fluidRow(
+                            column(width = 6,
+                                   div(class = "sub-title", "COVID-19 New Cases Over Time"),
+                                   plotOutput("plotNewCases")),
+                            column(width = 6,
+                                   div(class = "sub-title", "COVID-19 New Deaths Over Time"),
+                                   plotOutput("plotNewDeaths"))
+                          )
+                          )),
+             tabPanel("About")
   ))
 
 
@@ -170,6 +223,44 @@ server = function(input, output, session) {
     }
   })
 
+  # Calculate the filtered data based on user selections
+  reactiveFilteredData = reactive({
+    if (input$countryInput2 == "Total") {
+      subset(df_world, Date >= input$slider2[1] & Date <= input$slider2[2])
+    } else {
+      subset(df, Country == input$countryInput2 & Date >= input$slider2[1] & Date <= input$slider2[2])
+    }
+  })
+
+  # Generate the plot for new cases
+  output$plotNewCases = renderPlot({
+    data = reactiveFilteredData()
+
+    ## plot the line plots for new_cases
+    ggplot(data, aes(x = Date, y = New_cases)) +
+      geom_line(color = "#3D89C3") +
+      labs(x = "Date",
+           y = "New Cases") +
+      coord_cartesian(ylim = input$yAxisRangeCases) +
+      theme_minimal() +
+      theme(axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0, unit = "pt")),
+            axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
+  })
+
+  # Generate the plot for new deaths
+  output$plotNewDeaths = renderPlot({
+    data = reactiveFilteredData()
+
+    ## plot the line plots for new_deaths
+    ggplot(data, aes(x = Date, y = New_deaths)) +
+      geom_line(color = "#3D89C3") +
+      labs(x = "Date",
+           y = "New Deaths") +
+      coord_cartesian(ylim = input$yAxisRangeDeaths) +
+      theme_minimal() +
+      theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0, unit = "pt")),
+            axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
+  })
 
 }
 
