@@ -1,4 +1,4 @@
-"","Date","Country","Country_code","WHO_region","New Cases","Cases","New Deaths","Deaths"
+"","Date","Country","Country_code","WHO_region","New_cases","Cases","New_deaths","Deaths"
 "1",2020-01-05,"Total","T","World",0,2,0,3
 "2",2020-01-12,"Total","T","World",45.3333333333333,47,2,4
 "3",2020-01-19,"Total","T","World",91.6666666666667,137,4,6

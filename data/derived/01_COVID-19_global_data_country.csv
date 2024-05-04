@@ -1,4 +1,4 @@
-"","Date","Country_code","Country","WHO_region","New Cases","Cases","New Deaths","Deaths"
+"","Date","Country_code","Country","WHO_region","New_cases","Cases","New_deaths","Deaths"
 "1",2020-01-05,"AF","Afghanistan","EMRO",0,0,0,0
 "2",2020-01-12,"AF","Afghanistan","EMRO",0,0,0,0
 "3",2020-01-19,"AF","Afghanistan","EMRO",0,0,0,0

@@ -13,8 +13,8 @@ df = read.csv("data/raw/COVID-19_global_data.csv")
 
 # new column names ------------------------------------------------
 lookup = c(Date = "Date_reported",
-           `New Cases` = "New_cases", Cases = "Cumulative_cases",
-           `New Deaths` = "New_deaths", Deaths = "Cumulative_deaths")
+           Cases = "Cumulative_cases",
+           Deaths = "Cumulative_deaths")
 
 df_clean = df %>%
   ## change column names
@@ -23,16 +23,16 @@ df_clean = df %>%
   mutate(across(Date, ymd))
 
 # Change all negative values to NA
-df_clean$`New Cases` = replace(df_clean$`New Cases`,
-                               which(df_clean$`New Cases` < 0), NA)
-df_clean$`New Deaths` = replace(df_clean$`New Deaths`,
-                                which(df_clean$`New Deaths` < 0), NA)
+df_clean$New_cases = replace(df_clean$New_cases,
+                               which(df_clean$New_cases < 0), NA)
+df_clean$New_deaths = replace(df_clean$New_deaths,
+                                which(df_clean$New_deaths < 0), NA)
 
 # Replace NA by country
 df_clean = df_clean %>%
   group_by(Country) %>%
-  ## for `New Cases` and `New Deaths` column
-  mutate(across(c(`New Cases`, `New Deaths`), ~ {
+  ## for New_cases and New_deaths column
+  mutate(across(c(New_cases, New_deaths), ~ {
     vec = .x
     # Determine the first and last non-NA indices
     first_non_na = which(!is.na(vec))[1]
@@ -64,19 +64,21 @@ write.csv(df_clean, file = "data/derived/01_COVID-19_global_data_country.csv")
 # -------------------------------------------------------------------------
 
 # Generate daily total dataset
-df_daily = df_clean %>%
+df_world = df_clean %>%
   group_by(Date) %>%
   summarise(
     Country = "Total",
     Country_code = "T",
     WHO_region = "World",
-    `New Cases` = sum(`New Cases`, na.rm = TRUE),
+    New_cases = sum(New_cases, na.rm = TRUE),
     Cases = sum(Cases, na.rm = TRUE),
-    `New Deaths` = sum(`New Deaths`, na.rm = TRUE),
+    New_deaths = sum(New_deaths, na.rm = TRUE),
     Deaths = sum(Deaths, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  ## change the class of column Date to date type
+  mutate(across(Date, ymd))
 
 # save csv file ------------------------------------------------
-write.csv(df_daily, file = "data/derived/02_COVID-19_global_data_world.csv")
+write.csv(df_world, file = "data/derived/02_COVID-19_global_data_world.csv")
 # -------------------------------------------------------------------------
 
