@@ -3,39 +3,38 @@
 # Purpose: This script is used to ....
 # -----------------------------------------------------------
 
-# load package ------------------------------------------------
-library(shiny) # for shiny
-library(shinythemes)
-library(dplyr) # for data chosen
-library(rworldmap) # drawing map
-library(ggplot2) # drawing line plots
+# Load necessary packages
+library(shiny) # building interactive web apps
+library(shinythemes) # Additional themes for Shiny apps
+library(dplyr) # Data manipulation
+library(rworldmap) # create geographic maps
+library(ggplot2) # draw line plots
 
-# read data
+# Read and format data
 df = read.csv("../../data/derived/01_COVID-19_global_data_country.csv")
 df_world = read.csv("../../data/derived/02_COVID-19_global_data_world.csv")
 
-# confirm Date Formatting in Data Frames
+# Ensure 'Date' column is in Date format
 df$Date = as.Date(df$Date)
 df_world$Date = as.Date(df_world$Date)
 
-# find first and last date in dataframe
+# Define the range of dates available in the data
 date_min = min(df$Date)
 date_max = max(df$Date)
 
-country_list = function(region){
-  # find country name for each region
-  unique_countries = unique(df$Country[df$WHO_region == region])
+# Precompute the country lists based on WHO regions
+country_lists = df %>%
+  select(Country, WHO_region) %>%
+  distinct() %>%
+  split(.$WHO_region) %>%
+  lapply(function(x) x$Country)
 
-  # Create a list of lists, each containing one country name
-  country_lists = lapply(unique_countries, function(country) c(country))
-
-  # Print the lists to see the output
-  print(country_lists)
-}
-
+# UI using a fluid page layout
 ui = fluidPage(
+  ## Main title of the dashboard
   titlePanel("COVID-19 Dashboard"),
 
+  ## Add custom styles for visual elements
   tags$head(
     tags$style(HTML("
                     .panel-background {
@@ -79,17 +78,21 @@ ui = fluidPage(
                     "))
   ),
 
+  ## Navigation bar to organize data views
   navbarPage("COVID-19 Cases",
-             theme = shinytheme("readable"),
+             theme = shinytheme("readable"), # Set readable theme
 
+             ## Tab panel for cumulative data display
              tabPanel("Cumulative Data",
+                      ### add section title
                       div(class = "section-title",
                           h3("Number of COVID-19 Cases or Deaths")),
+                      ### background colour
                       div(class = "panel-background",
                           fluidRow(
                             column(width = 3,
                                    div(class = "vertical-space"),
-                                   ## choose Date
+                                   ### slider input for selecting dates
                                    sliderInput("slider1", "Date",
                                                min = as.Date(date_min, "%Y-%m-%d"),
                                                max = as.Date(date_max, "%Y-%m-%d"),
@@ -98,33 +101,39 @@ ui = fluidPage(
                                                step = 7
                                    ),
                                    div(class = "vertical-space"),
-                                   ## Choose case or death
+                                   ### dropdown to select cases or deaths
                                    selectInput("dataChoice", "Type:",
                                                choices = c("Cases" = "Cases", "Deaths" = "Deaths")),
                                    div(class = "vertical-space", style = "height: 40px;"),
+                                   ### show exact number of cases or deaths for a given country
                                    div(class = "white-background",
                                        htmlOutput("dynamicTitle"),
                                        selectizeInput("countryInput",
                                                       "Choose a Country:",
                                                       list(
-                                                        `Eastern Mediterranean` = country_list("EMRO"),
-                                                        `Europe` = country_list("EURO"),
-                                                        `Africa` = country_list("AFRO"),
-                                                        `Western Pacific` = country_list("WPRO"),
-                                                        `Americas` = country_list("AMRO"),
-                                                        `South-East Asia` = country_list("SEARO"),
-                                                        `Others` = c(country_list("OTHER"), country_list(""))),
+                                                        `Eastern Mediterranean` = country_lists[["EMRO"]],
+                                                        `Europe` = country_lists[["EURO"]],
+                                                        `Africa` = country_lists[["AFRO"]],
+                                                        `Western Pacific` = country_lists[["WPRO"]],
+                                                        `Americas` = country_lists[["AMRO"]],
+                                                        `South-East Asia` = country_lists[["SEARO"]],
+                                                        `Others` = c(country_lists[["OTHER"]])),
                                                       options = list(selectize = FALSE)),
                                        uiOutput("countryData"))),
-                            column(width = 9,
-                                   plotOutput(outputId = "worldMap",
-                                              height = "600px"))))),
+                              ### world map visualization
+                              column(width = 9,
+                                     plotOutput(outputId = "worldMap",
+                                                height = "600px"))))),
 
+             ## Tab panel for daily data (new cases) display
              tabPanel("Daily Data",
+                      ### add section title
                       div(class = "section-title",
                           h3("Number of COVID-19 New Cases or Deaths")),
+                      ### add background colour
                       div(class = "panel-background",
                           fluidRow(
+                            ### Date range slider input for daily data
                             column(width = 5,
                                    sliderInput("slider2", "Date",
                                                min = as.Date(date_min, "%Y-%m-%d"),
@@ -135,25 +144,28 @@ ui = fluidPage(
                                                width = "70%"
                                    )),
                             column(width = 1),
+                            ### Country selection for daily data
                             column(width = 3,
                                    selectizeInput("countryInput2",
                                                   "Country:",
                                                   list(
                                                     "Total",
-                                                    `Eastern Mediterranean` = country_list("EMRO"),
-                                                    `Europe` = country_list("EURO"),
-                                                    `Africa` = country_list("AFRO"),
-                                                    `Western Pacific` = country_list("WPRO"),
-                                                    `Americas` = country_list("AMRO"),
-                                                    `South-East Asia` = country_list("SEARO"),
-                                                    `Others` = c(country_list("OTHER"), country_list(""))),
+                                                    `Eastern Mediterranean` = country_lists[["EMRO"]],
+                                                    `Europe` = country_lists[["EURO"]],
+                                                    `Africa` = country_lists[["AFRO"]],
+                                                    `Western Pacific` = country_lists[["WPRO"]],
+                                                    `Americas` = country_lists[["AMRO"]],
+                                                    `South-East Asia` = country_lists[["SEARO"]],
+                                                    `Others` = c(country_lists[["OTHER"]])),
                                                   options = list(selectize = FALSE))),
                             column(width = 3)
                             ),
                           fluidRow(
+                            ### line plot for new cases
                             column(width = 6,
                                    div(class = "sub-title", "COVID-19 New Cases Over Time"),
                                    plotOutput("plotNewCases")),
+                            ### line plot for new deaths
                             column(width = 6,
                                    div(class = "sub-title", "COVID-19 New Deaths Over Time"),
                                    plotOutput("plotNewDeaths"))
@@ -162,28 +174,30 @@ ui = fluidPage(
              tabPanel("About")
   ))
 
-
+# define server
 server = function(input, output, session) {
 
-  # Filter data based on the selected date and data type
+  ## cumulative data panel
+  ## create a reactive expression that filters the dataset based on the selected date
   filteredData = reactive({
     df[df$Date == as.Date(input$slider1), ]
   })
 
-  # Generate a world map with cases or deaths by country for the selected date
+  ## generate and render a world map based on the filtered data
   output$worldMap = renderPlot({
     data = filteredData()
-    ## No available data
+    ## check if there is no data available for the selected date
     if (nrow(data) == 0) {
-      plot.new()
+      plot.new() # Create an empty plot
       title("No data available for this date.")
       return()
     }
-    ## Draw data in the world map
+
+    ## join country data to a map based on country names
     worldMap = joinCountryData2Map(data, joinCode = "NAME",
                                    nameJoinColumn = "Country",
                                    mapResolution = "li")
-    ## Create the map
+    ## plot the data on the map with specified options
     map = mapCountryData(worldMap, nameColumnToPlot = input$dataChoice,
                          catMethod = "fixedWidth",
                          colourPalette = c("#98DAFF", "#7BBFFC",
@@ -191,39 +205,45 @@ server = function(input, output, session) {
                          mapTitle = "",
                          addLegend = FALSE)
 
-    # Customize and add a map legend manually
+    ## customize and add a map legend manually
     do.call(addMapLegend, c(map, legendLabels = "none",
                             digits = 1,
                             legendShrink = .7,
                             legendIntervals = "data",
                             legendMar = 2,
                             horizontal = FALSE))
-
+    ## output the map to the UI
     print(map)
   })
 
+  ## render a dynamic title based on the selected data type (Cases or Deaths)
   output$dynamicTitle = renderUI({
     HTML(paste("<div class='large-font'>Number of", input$dataChoice, "for a Country</div>"))
   })
 
+  ## render country-specific data based on user selection
   output$countryData = renderUI({
     data = filteredData()
+    ## check if there is no data available for the selected date
     if (nrow(data) == 0) {
       "No data available on selected date."
     }
+    ## check if there is no data available for the selected country
     data = data[data$Country == input$countryInput, ]
     if (nrow(data) == 0) {
       "No data available for this country on selected date."
     } else {
       output_num = data[[input$dataChoice]]
       output_num = format(output_num, big.mark = ",", scientific = FALSE)
+      ## word output, including date and exact number
       HTML(paste("The number of", input$dataChoice, "on",
                  format(input$slider1, "%Y-%m-%d"), "is",
-                 tags$b(output_num), '<br><div style="margin-bottom:10px;"></div>'))
+                 tags$b(output_num), '<br><div style="margin-bottom:20px;"></div>'))
     }
   })
 
-  # Calculate the filtered data based on user selections
+  ## daily data panel
+  ## Calculate the filtered data based on user selections
   reactiveFilteredData = reactive({
     if (input$countryInput2 == "Total") {
       subset(df_world, Date >= input$slider2[1] & Date <= input$slider2[2])
@@ -232,39 +252,39 @@ server = function(input, output, session) {
     }
   })
 
-  # Generate the plot for new cases
+  ## generate the plot for new cases based on filtered daily data
   output$plotNewCases = renderPlot({
     data = reactiveFilteredData()
-
     ## plot the line plots for new_cases
     ggplot(data, aes(x = Date, y = New_cases)) +
-      geom_line(color = "#3D89C3") +
+      geom_line(color = "#3D89C3", linewidth = 1.5) +
       labs(x = "Date",
            y = "New Cases") +
       coord_cartesian(ylim = input$yAxisRangeCases) +
       theme_minimal() +
+      ## adjust gap between axis title and axis
       theme(axis.title.y = element_text(margin = margin(t = 0, r = 15, b = 0, l = 0, unit = "pt")),
             axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
   })
 
-  # Generate the plot for new deaths
+  ## generate the plot for new deaths based on filtered daily data
   output$plotNewDeaths = renderPlot({
     data = reactiveFilteredData()
-
     ## plot the line plots for new_deaths
     ggplot(data, aes(x = Date, y = New_deaths)) +
-      geom_line(color = "#3D89C3") +
+      geom_line(color = "#3D89C3", linewidth = 1.5) +
       labs(x = "Date",
            y = "New Deaths") +
       coord_cartesian(ylim = input$yAxisRangeDeaths) +
       theme_minimal() +
+      ## adjust gap between axis title and axis
       theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0, unit = "pt")),
             axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
   })
 
 }
 
+# Start the Shiny app with defined UI and server functions
 shinyApp(ui = ui, server = server)
-
 
 
