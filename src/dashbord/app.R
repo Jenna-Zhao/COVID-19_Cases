@@ -100,13 +100,12 @@ ui = fluidPage(
                             column(width = 3,
                                    div(class = "vertical-space"),
                                    ### slider input for selecting dates
-                                   sliderInput("slider1", "Date",
+                                   sliderInput("slider1", "Select Date Range:",
                                                min = as.Date(date_min, "%Y-%m-%d"),
                                                max = as.Date(date_max, "%Y-%m-%d"),
-                                               value = as.Date(date_max),
+                                               value = c(as.Date(date_min), as.Date(date_max)),
                                                timeFormat = "%Y-%m-%d",
-                                               step = 7
-                                   ),
+                                               step = 7),
                                    div(class = "vertical-space"),
                                    ### dropdown to select cases or deaths
                                    selectInput("dataChoice", "Type:",
@@ -189,6 +188,27 @@ server = function(input, output, session) {
   filteredData = reactive({
     df[df$Date == as.Date(input$slider1), ]
   })
+  ## Reactive expression to fetch data for the selected date range and calculate change
+  filteredData = reactive({
+    ## Filter data to get the cumulative value at the start and end dates for each country
+    start_data = df %>%
+      filter(Date == as.Date(input$slider1[1])) %>%
+      select(Country, starts_with(input$dataChoice))
+
+    end_data = df %>%
+      filter(Date == as.Date(input$slider1[2])) %>%
+      select(Country, starts_with(input$dataChoice))
+
+    ## Calculate the change by subtracting start values from end values
+    ## Assuming 'Cases' or 'Deaths' are the columns based on input$dataChoice
+    data_change = end_data %>%
+      left_join(start_data, by = "Country", suffix = c("_end", "_start")) %>%
+      mutate(Change = get(paste(input$dataChoice, "_end", sep = "")) -
+               get(paste(input$dataChoice, "_start", sep = ""))) %>%
+      select(Country, Change)
+
+    data_change
+  })
 
   ## generate and render a world map based on the filtered data
   output$worldMap = renderPlot({
@@ -205,7 +225,7 @@ server = function(input, output, session) {
                                    nameJoinColumn = "Country",
                                    mapResolution = "li")
     ## plot the data on the map with specified options
-    map = mapCountryData(worldMap, nameColumnToPlot = input$dataChoice,
+    map = mapCountryData(worldMap, nameColumnToPlot = "Change",
                          catMethod = "fixedWidth",
                          colourPalette = c("#98DAFF", "#7BBFFC",
                                            "#3D89C3", "#00588D"),
@@ -236,15 +256,16 @@ server = function(input, output, session) {
       "No data available on selected date."
     }
     ## check if there is no data available for the selected country
-    data = data[data$Country == input$countryInput, ]
+    data_country = data[data$Country == input$countryInput, ]
     if (nrow(data) == 0) {
       "No data available for this country on selected date."
     } else {
-      output_num = data[[input$dataChoice]]
+      output_num = data_country$Change
       output_num = format(output_num, big.mark = ",", scientific = FALSE)
       ## word output, including date and exact number
-      HTML(paste("The number of", input$dataChoice, "on",
-                 format(input$slider1, "%Y-%m-%d"), "is",
+      HTML(paste("The number of", input$dataChoice, "from",
+                 format(as.Date(input$slider1[1]), "%Y-%m-%d"), "to",
+                 format(as.Date(input$slider1[2]), "%Y-%m-%d"), "is",
                  tags$b(output_num), '<br><div style="margin-bottom:20px;"></div>'))
     }
   })
