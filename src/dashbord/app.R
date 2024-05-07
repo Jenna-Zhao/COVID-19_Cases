@@ -6,8 +6,6 @@
 #          and daily statistics on an interactive world map and through line plots.
 #
 # Dependencies: shiny, shinythemes, dplyr, rworldmap, ggplot2
-# Usage: This script is intended to be run in an R environment with Shiny server capabilities.
-#        Ensure all dependencies are installed using install.packages() before running.
 # -----------------------------------------------------------
 
 # Load necessary packages
@@ -61,7 +59,7 @@ ui = fluidPage(
                       margin-bottom: 10px; /* space below the title */
                     }
                     .vertical-space {
-                      margin-top: 40px; /* vertical space element */
+                      margin-top: 30px; /* vertical space element */
                     }
                     .large-font {
                       font-size: 17px; /* larger font size for titles */
@@ -81,6 +79,16 @@ ui = fluidPage(
                     }
                     .selectize-control .selectize-input {
                       margin-top: 5px; /* Adjust the top margin to create space */
+                    }
+                    .markdown-content {
+                      font-family: Verdana, sans-serif;
+                      font-size: 16px;
+                    }
+                    .markdown-section {
+                      margin-top: 7px;  /* Adds space above the Markdown content */
+                    }
+                    .markdown-section p {
+                      text-indent: 2em;  /* Indents the first line of each paragraph */
                     }
                     "))
   ),
@@ -177,7 +185,25 @@ ui = fluidPage(
                                    plotOutput("plotNewDeaths"))
                           )
                           )),
-             tabPanel("About")
+             navbarMenu("Analysis",
+                        tabPanel("Worldwide",
+                                 div(class = "section-title",
+                                     h3("Analysis of Worldwide COVID-19 Case and Death")),
+                                 ### add background colour
+                                 div(class = "panel-background",
+                                     fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                          uiOutput("markdownText_world")))))
+                                 ),
+                        tabPanel("Regional Difference",
+                                 div(class = "section-title",
+                                     h3("Analysis of Regional Differences in COVID-19 Cases and Deaths")),
+                                 ### add background colour
+                                 div(class = "panel-background",
+                                     fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                          uiOutput("markdownText_regional")))))
+                        ),
+                        ),
+             tabPanel("About"),
   ))
 
 # define server
@@ -308,6 +334,18 @@ server = function(input, output, session) {
       ## adjust gap between axis title and axis
       theme(axis.title.y = element_text(margin = margin(t = 0, r = 20, b = 0, l = 0, unit = "pt")),
             axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
+  })
+
+  output$markdownText_world = renderUI({
+    tags$div(class = "markdown-content",
+             includeMarkdown("../../outputs/01_analysis_world/world.md"))
+
+  })
+
+  output$markdownText_regional = renderUI({
+    tags$div(class = "markdown-content",
+             includeMarkdown("../../outputs/02_analysis_regional_diff/regional_diff.md"))
+
   })
 
 }
