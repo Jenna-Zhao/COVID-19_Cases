@@ -57,8 +57,14 @@ combined_df = combined_df %>%
   arrange(Country, Year)
 
 
+# prepare population data for 2024
+population_24 = population_df1 %>%
+  # select only the relevant columns
+  select(country, pop2024)
+
 # save csv file
 write.csv(combined_df, file = "data/derived/03_population_by_country.csv")
+write.csv(population_24, file = "data/derived/04_population_by_country_24.csv")
 
 
 

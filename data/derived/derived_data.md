@@ -66,6 +66,14 @@ Our aim is to merge two datasets into a single file that represents the number o
 
 -   **Combining Datasets**: Combining the filtered datasets for 2020 to 2022 and 2023 to 2024 into one data frame by using **`bind_rows()`** function.
 
--   **Saving Cleaned Data**: Saving population data by country from 2020 to 2024 into a CSV file named [03_population_by_country.csv](03_population_by_country.csv).
+-   **Selecting Data for 2024**: Using `select()` function to select population data for 2024.
+
+-   **Matching country name**: Adjusting specific country names in the dataset to match with function `joinCountryData2Map()`.
+
+-   **Saving Cleaned Data**:
+
+    -   Saving population data by country from 2020 to 2024 into a CSV file named [03_population_by_country.csv](03_population_by_country.csv).
+
+    -   Saving population data by country for 2024 into a CSV file named [04_population_by_country_24.csv](04_population_by_country_24.csv).
 
 The script [02_population_data_clean_and_merge.R](../../src/data_cleaning/02_population_data_clean_and_merge.R) contains all the code used in this data cleaning process.
