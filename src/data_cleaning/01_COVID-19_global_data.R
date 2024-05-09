@@ -9,7 +9,7 @@ library(tidyverse)
 library(zoo)
 
 # read raw data ------------------------------------------------
-df = read.csv("data/raw/COVID-19_global_data.csv")
+df = read.csv("data/raw/01-COVID-19_global_data.csv")
 
 # new column names ------------------------------------------------
 lookup = c(Date = "Date_reported",
@@ -60,6 +60,11 @@ df_clean = df_clean %>%
     vec
   })) %>%
   ungroup()
+
+# change country name to match
+df_clean = df_clean %>%
+  mutate(Country = ifelse(Country == "Türkiye", "Turkey", Country)) %>%
+  mutate(Country = ifelse(Country == "Côte d'Ivoire", "Ivory Coast", Country))
 
 # save csv file ------------------------------------------------
 write.csv(df_clean, file = "data/derived/01_COVID-19_global_data_country.csv")
