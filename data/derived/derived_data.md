@@ -1,6 +1,10 @@
 # Derived data
 
-This document provides a comprehensive overview of the processes used to manage and clean the raw data. Key steps include renaming columns, converting data types, and addressing missing or unreasonable values to enhance the efficiency of plot generation. For data processing, we utilized the `dplyr` and `zoo` packages, which can be installed using the `install.packages()` function in R.
+This document provides a comprehensive overview of the processes used to manage and clean the raw data. Key steps include renaming columns, converting data types, merging data and addressing missing or unreasonable values to enhance the efficiency of plot generation.
+
+## COVID-19 Data
+
+For COVID-19 Data, we utilized the `dplyr` and `zoo` packages, which can be installed using the `install.packages()` function in R.
 
 Our goal is to visualize the global impact of COVID-19 through two key visual representations. Firstly, we aim to create a map illustrating the cumulative number of COVID-19 cases or deaths for on a given date. Secondly, we will generate line plots to track changes in the number of new cases or deaths over time for a selected country.
 
@@ -32,4 +36,36 @@ Our goal is to visualize the global impact of COVID-19 through two key visual re
 
     -   **World Data**: Compute and record the total number of daily and cumulative cases and deaths worldwide into another CSV file named [02_COVID-19_global_data_world.csv](02_COVID-19_global_data_world.csv).
 
-The script [01_COVID-19_global_data.R](../../src/data_cleaning/01_COVID-19_global_data.R) contains all the code used in the data cleaning process.
+The script [01_COVID-19_global_data.R](../../src/data_cleaning/01_COVID-19_global_data.R) contains all the code used in this data cleaning process.
+
+## Population Data
+
+For COVID-19 Data, we used the `dplyr` packages.
+
+Our aim is to merge two datasets into a single file that represents the number of population by country from 2020 to 2024. The merged dataset will be used to analyze the correlation between COVID-19 case and population figures.
+
+-   **Loading Data**: Using the `read.csv()` function to load the dataset.
+
+-   **Preparing Data for 2023 and 2024**:
+
+    -   Renaming `country` column to `Country` for consistency;
+    -   Selecting focused columns `pop2023` and `pop2024`;
+    -   Transforming from a wide format to a long format using **`pivot_longer()`** function, so columns `pop2023` and `pop2024` will be converted into two new columns: `Year` (stores the year) and `pop` (stores the population figures);
+    -   Converting `Year` column values into numeric: `"pop2023"` becomes `"2023"` and `"pop2024"` becomes `"2024"`.
+
+-   **Preparing Data for 2020, 2021, and 2022**
+
+    -   Similarly, transforming **`population_df2`** from wide to long format, handling the years 2020, 2021, and 2022: `Year` (stores the year), `pop` (stores the population figures) and the prefix 'X' is removed;
+    -   Converting `Year` column values into numeric;
+    -   Renaming `Country.Name` column to `Country` for consistency;
+    -   Selecting focused columns `Country`, `Year` and `pop`.
+
+-   **Identifying Common Countries**: Performing `intersect()` between the country lists from both datasets to identify common countries.
+
+-   **Filtering Data for Common Countries**: Filtering both datasets to include only the entries corresponding to the common countries by using `filter()` function.
+
+-   **Combining Datasets**: Combining the filtered datasets for 2020 to 2022 and 2023 to 2024 into one data frame by using **`bind_rows()`** function.
+
+-   **Saving Cleaned Data**: Saving population data by country from 2020 to 2024 into a CSV file named [03_population_by_country.csv](03_population_by_country.csv).
+
+The script [02_population_data_clean_and_merge.R](../../src/data_cleaning/02_population_data_clean_and_merge.R) contains all the code used in this data cleaning process.
