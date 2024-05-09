@@ -253,8 +253,8 @@ server = function(input, output, session) {
     ## plot the data on the map with specified options
     map = mapCountryData(worldMap, nameColumnToPlot = "Change",
                          catMethod = "fixedWidth",
-                         colourPalette = c("#98DAFF", "#7BBFFC",
-                                           "#3D89C3", "#00588D"),
+                         colourPalette = c("#cbdef0", "#abd0e6", "#82badb",
+                                           "#59a1cf", "#3788c0", "#1c6aaf", "#0b4e94"),
                          mapTitle = "",
                          addLegend = FALSE)
 
@@ -326,7 +326,7 @@ server = function(input, output, session) {
     data = reactiveFilteredData()
     ## plot the line plots for new_deaths
     ggplot(data, aes(x = Date, y = New_deaths)) +
-      geom_line(color = "#3D89C3", linewidth = 1.5) +
+      geom_line(color = "#3788c0", linewidth = 1.5) +
       labs(x = "Date",
            y = "New Deaths") +
       coord_cartesian(ylim = input$yAxisRangeDeaths) +
@@ -338,13 +338,13 @@ server = function(input, output, session) {
 
   output$markdownText_world = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../../outputs/01_analysis_world/world.md"))
+             includeMarkdown("../../analysis/01_analysis_world/world.md"))
 
   })
 
   output$markdownText_regional = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../../outputs/02_analysis_regional_diff/regional_diff.md"))
+             includeMarkdown("../../analysis/02_analysis_regional_diff/regional_diff.md"))
 
   })
 

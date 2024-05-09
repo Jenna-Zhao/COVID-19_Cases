@@ -28,8 +28,8 @@ par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 # plot the data on the map for cases
 map_case = mapCountryData(worldMap, nameColumnToPlot = "Cases",
                      catMethod = "fixedWidth",
-                     colourPalette = c("#98DAFF", "#7BBFFC",
-                                       "#3D89C3", "#00588D"),
+                     colourPalette = c("#cbdef0", "#abd0e6", "#82badb",
+                                       "#59a1cf", "#3788c0", "#1c6aaf", "#0b4e94"),
                      mapTitle = "The number of COVID-19 Cases by April 7, 2024",
                      addLegend = "FALSE")
 
@@ -48,8 +48,8 @@ par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 # Plot the data on the map for deaths
 map_case = mapCountryData(worldMap, nameColumnToPlot = "Deaths",
                           catMethod = "fixedWidth",
-                          colourPalette = c("#98DAFF", "#7BBFFC",
-                                            "#3D89C3", "#00588D"),
+                          colourPalette = c("#cbdef0", "#abd0e6", "#82badb",
+                                            "#59a1cf", "#3788c0", "#1c6aaf", "#0b4e94"),
                           mapTitle = "The number of COVID-19 Deaths by April 7, 2024",
                           addLegend = "FALSE")
 
