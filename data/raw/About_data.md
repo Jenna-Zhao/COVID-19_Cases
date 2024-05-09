@@ -10,7 +10,7 @@ The main variable shows below:
 
 -   `Country_code`, `Country`: The codes and names of the countries reporting the data.
 
--   `WHO_region`: Abbreviations for WHO regions, including:
+-   `WHO_region`: Abbreviations for [WHO regions](https://ourworldindata.org/grapher/who-regions), including:
 
     -   **AFRO**: Regional Office for Africa;
 
