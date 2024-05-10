@@ -202,6 +202,14 @@ ui = fluidPage(
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_regional")))))
                         ),
+                        tabPanel("Correlation",
+                                 div(class = "section-title",
+                                     h3("Analysis of Correlation between Population and COVID-19 New Cases")),
+                                 ### add background colour
+                                 div(class = "panel-background",
+                                     fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                          uiOutput("markdownText_corr")))))
+                        )
                         ),
              tabPanel("About"),
   ))
@@ -347,6 +355,13 @@ server = function(input, output, session) {
              includeMarkdown("../../analysis/02_analysis_regional_diff/regional_diff.md"))
 
   })
+
+  output$markdownText_corr = renderUI({
+    tags$div(class = "markdown-content",
+             includeMarkdown("../../analysis/03_analysis-correlation_with_poopulation/correlation.md"))
+
+  })
+
 
 }
 
