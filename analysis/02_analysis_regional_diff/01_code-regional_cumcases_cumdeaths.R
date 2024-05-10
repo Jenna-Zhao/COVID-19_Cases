@@ -14,6 +14,8 @@ df$Date = as.Date(df$Date)
 
 # extract data for the most recent date
 df_max = df[df$Date == max(df$Date), ]
+df_max = df_max %>%
+  mutate(logCases = log(Cases + 1), logDeaths = log(Deaths + 1))
 
 # join country data to a map based on country names
 worldMap = joinCountryData2Map(df_max, joinCode = "NAME",
@@ -26,11 +28,11 @@ png("analysis/02_analysis_regional_diff/01_plot-regional_diff_cases.png",
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
 # plot the data on the map for cases
-map_case = mapCountryData(worldMap, nameColumnToPlot = "Cases",
+map_case = mapCountryData(worldMap, nameColumnToPlot = "logCases",
                      catMethod = "fixedWidth",
                      colourPalette = c("#cbdef0", "#abd0e6", "#82badb",
                                        "#59a1cf", "#3788c0", "#1c6aaf", "#0b4e94"),
-                     mapTitle = "The number of COVID-19 Cases by April 7, 2024",
+                     mapTitle = "The number of COVID-19 Cases by April 7, 2024 (Log transformed)",
                      addLegend = "FALSE")
 
 # customize and add a map legend manually
@@ -46,11 +48,11 @@ png("analysis/02_analysis_regional_diff/02_plot-regional_diff_deaths.png",
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
 # Plot the data on the map for deaths
-map_case = mapCountryData(worldMap, nameColumnToPlot = "Deaths",
+map_case = mapCountryData(worldMap, nameColumnToPlot = "logDeaths",
                           catMethod = "fixedWidth",
                           colourPalette = c("#cbdef0", "#abd0e6", "#82badb",
                                             "#59a1cf", "#3788c0", "#1c6aaf", "#0b4e94"),
-                          mapTitle = "The number of COVID-19 Deaths by April 7, 2024",
+                          mapTitle = "The number of COVID-19 Deaths by April 7, 2024 (Log transformed)",
                           addLegend = "FALSE")
 
 # customize and add a map legend manually
