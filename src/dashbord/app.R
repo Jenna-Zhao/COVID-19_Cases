@@ -3,7 +3,7 @@
 # Purpose: This script creates an interactive Shiny dashboard to visualize COVID-19 data.
 #          The dashboard provides insights into COVID-19 cases and deaths globally,
 #          allowing users to filter data by date and country. Users can view cumulative data
-#          and daily statistics on an interactive world map and through line plots.
+#          and incremental statistics on an interactive world map and through line plots.
 #
 # Dependencies: shiny, shinythemes, dplyr, rworldmap, ggplot2
 # -----------------------------------------------------------
@@ -139,8 +139,8 @@ ui = fluidPage(
                                      plotOutput(outputId = "worldMap",
                                                 height = "600px"))))),
 
-             ## Tab panel for daily data (new cases) display
-             tabPanel("Daily Data",
+             ## Tab panel for incremental data (new cases) display
+             tabPanel("Incremental Data",
                       ### add section title
                       div(class = "section-title",
                           h3("Number of COVID-19 New Cases or Deaths")),
@@ -211,7 +211,7 @@ ui = fluidPage(
                                                                           uiOutput("markdownText_corr")))))
                         )),
              navbarMenu("About",
-                      tabPanel("COVID-19",
+                      tabPanel("About COVID-19",
                                div(class = "section-title",
                                    h3("About COVID-19")),
                                ### add background colour
@@ -219,7 +219,7 @@ ui = fluidPage(
                                    fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                         uiOutput("markdownText_covid")))))
                       ),
-                      tabPanel("Dashboard",
+                      tabPanel("About this Dashboard",
                                div(class = "section-title",
                                    h3("About this Dashboard")),
                                ### add background colour
@@ -362,31 +362,31 @@ server = function(input, output, session) {
 
   output$markdownText_world = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../../analysis/01_analysis_world/world.md"))
+             includeMarkdown("../analysis/01_analysis_world/world.md"))
 
   })
 
   output$markdownText_regional = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../../analysis/02_analysis_regional_diff/regional_diff.md"))
+             includeMarkdown("../analysis/02_analysis_regional_diff/regional_diff.md"))
 
   })
 
   output$markdownText_corr = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../../analysis/03_analysis-correlation_with_poopulation/correlation.md"))
+             includeMarkdown("../analysis/03_analysis-correlation_with_poopulation/correlation.md"))
 
   })
 
   output$markdownText_covid = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../About/01_COVID.md"))
+             includeMarkdown("../about/01_COVID.md"))
 
   })
 
   output$markdownText_dashboard = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../About/02_Dashboard.md"))
+             includeMarkdown("../about/02_Dashboard.md"))
 
   })
 
