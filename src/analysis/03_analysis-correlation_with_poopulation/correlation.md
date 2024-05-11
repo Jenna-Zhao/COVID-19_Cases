@@ -14,8 +14,8 @@ Additionally, we observed a statistically relationship between the logarithm of 
 
 As global populations grow, especially in urban areas, challenges in managing infectious are expected to increase, requiring a stronger healthcare infrastructure and proactive pandemic planning. Historical data from 2023 to 2024 indicates the persistence of disease hotspots in densely populated areas, suggesting these patterns will continue without significant public health strategy changes or improvements in vaccine coverage. Therefore, efforts to manage healthcare capacity and public health interventions should continue to be reinforced, with a particular focus on enhancing healthcare accessibility and disease surveillance in densely populated regions. This approach is essential for effectively managing future health crises.
 
-<p align="middle">
+<p style="text-align:center">
 
-![](03_plot-correlation.png){width="90%"}
+<img src="03_plot-correlation.png" width="70%"/>
 
 </p>
