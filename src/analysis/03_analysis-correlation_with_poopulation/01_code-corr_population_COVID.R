@@ -22,7 +22,7 @@ df_pop_24 = df_pop_24 %>%
   mutate(pop2024 = log(pop2024 + 1)) # log transformation, Adding 1 to avoid log(0)
 
 # open a device to plot cases
-png("analysis/03_analysis-correlation_with_poopulation/01_plot-population_map.png",
+png("src/analysis/03_analysis-correlation_with_poopulation/01_plot-population_map.png",
     width = 10 * 320, height = 6 * 310,res = 300)
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
@@ -61,7 +61,7 @@ data_2324 = annual_cases %>%
   filter(Year == 2023 | Year == 2024)
 
 # open a device to plot cases
-png("analysis/03_analysis-correlation_with_poopulation/02_plot-COVID19_2324.png",
+png("src/analysis/03_analysis-correlation_with_poopulation/02_plot-COVID19_2324.png",
     width = 10 * 320, height = 6 * 310,res = 300)
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
@@ -106,4 +106,4 @@ ggplot(data_analysis, aes(x = log_pop, y = log_case_change)) +
        x = "Log of Population",
        y = "Log of Annual COVID-19 Case") +
   theme_minimal()
-ggsave("analysis/03_analysis-correlation_with_poopulation/03_plot-correlation.png")
+ggsave("src/analysis/03_analysis-correlation_with_poopulation/03_plot-correlation.png")

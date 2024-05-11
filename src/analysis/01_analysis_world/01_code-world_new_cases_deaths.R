@@ -41,5 +41,5 @@ new_deaths = ggplot(df_world, aes(x = Date, y = New_deaths)) +
                                   hjust = -3))
 
 # save plot cases and deaths
-ggsave("analysis/01_analysis_world/01_plot-world_new_cases.png", new_cases)
-ggsave("analysis/01_analysis_world/02_plot-world_new_deaths.png", new_deaths)
+ggsave("src/analysis/01_analysis_world/01_plot-world_new_cases.png", new_cases)
+ggsave("src/analysis/01_analysis_world/02_plot-world_new_deaths.png", new_deaths)

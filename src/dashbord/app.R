@@ -202,16 +202,32 @@ ui = fluidPage(
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_regional")))))
                         ),
-                        tabPanel("Correlation",
+                        tabPanel("Correlation with Population",
                                  div(class = "section-title",
                                      h3("Analysis of Correlation between Population and COVID-19 New Cases")),
                                  ### add background colour
                                  div(class = "panel-background",
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_corr")))))
-                        )
-                        ),
-             tabPanel("About"),
+                        )),
+             navbarMenu("About",
+                      tabPanel("COVID-19",
+                               div(class = "section-title",
+                                   h3("About COVID-19")),
+                               ### add background colour
+                               div(class = "panel-background",
+                                   fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                        uiOutput("markdownText_covid")))))
+                      ),
+                      tabPanel("Dashboard",
+                               div(class = "section-title",
+                                   h3("About this Dashboard")),
+                               ### add background colour
+                               div(class = "panel-background",
+                                   fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                        uiOutput("markdownText_dashboard")))))
+                      )
+                      ),
   ))
 
 # define server
@@ -362,6 +378,17 @@ server = function(input, output, session) {
 
   })
 
+  output$markdownText_covid = renderUI({
+    tags$div(class = "markdown-content",
+             includeMarkdown("../About/01_COVID.md"))
+
+  })
+
+  output$markdownText_dashboard = renderUI({
+    tags$div(class = "markdown-content",
+             includeMarkdown("../About/02_Dashboard.md"))
+
+  })
 
 }
 

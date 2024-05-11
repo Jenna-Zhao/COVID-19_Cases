@@ -23,7 +23,7 @@ worldMap = joinCountryData2Map(df_max, joinCode = "NAME",
                                mapResolution = "li")
 
 # open a device to plot cases
-png("analysis/02_analysis_regional_diff/01_plot-regional_diff_cases.png",
+png("src/analysis/02_analysis_regional_diff/01_plot-regional_diff_cases.png",
     width = 10 * 320, height = 6 * 310,res = 300)
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
@@ -43,7 +43,7 @@ do.call(addMapLegend, c(map_case, legendLabels = "limits",
 dev.off()
 
 # open a device to plot deaths
-png("analysis/02_analysis_regional_diff/02_plot-regional_diff_deaths.png",
+png("src/analysis/02_analysis_regional_diff/02_plot-regional_diff_deaths.png",
     width = 10 * 320, height = 6 * 310,res = 300)
 par(mai = c(0, 0, 0.2, 0),xaxs = "i",yaxs = "i") # set margins
 
