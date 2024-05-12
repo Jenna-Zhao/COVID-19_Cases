@@ -1,6 +1,6 @@
 # Derived data
 
-This document provides a comprehensive overview of the processes used to manage and clean the raw data. Key steps include renaming columns, converting data types, merging data and addressing missing or unreasonable values to enhance the efficiency of plot generation.
+This document provides a comprehensive overview of the processes used to manage and clean the raw data. Key steps include renaming columns, converting data types, merging data and addressing missing or unreasonable values to enhance the efficiency of plotting.
 
 ## COVID-19 Data
 
@@ -12,17 +12,17 @@ Our goal is to visualize the global impact of COVID-19 through two key visual re
 
 -   **Renaming Columns**: Modify column names for clarity and accessibility:
 
-    -   **`Date_reported`** to **`Date`**
+    -   `Date_reported` to `Date`
 
-    -   **`Cumulative_cases`** to **`Cases`**
+    -   `Cumulative_cases` to `Cases`
 
-    -   **`Cumulative_deaths`** to **`Deaths`**
+    -   `Cumulative_deaths` to `Deaths`
 
 -   **Data Type Conversion**: Convert the `Date` column from "Character" to "Date" type to facilitate chronological operations.
 
--   **Replacing Values**: The **`ifelse()`** function checks for conditions where **`WHO_region`** is either empty and replaces these with **`"OTHER"`**. This helps grouping operations in analysis or visualizations.
+-   **Replacing Values**: The `ifelse()` function checks for conditions where `WHO_region` is either empty and replaces these with `"OTHER"`. This helps grouping operations in analysis or visualizations.
 
--   **Handling Retrospective Corrections**: Replace negative values in the columns `New_cases` and `New_deaths`, which are used for retrospective corrections, with `NA`. This prepares the dataset for the imputation of more reasonable values.
+-   **Handling Retrospective Corrections**: Replace negative values in the columns `New_cases` and `New_deaths`, which are used for retrospective corrections, with `NA`. This prepares the dataset to estimate more reasonable values.
 
 -   **Handling NA Values**: The dataset was first organised by country to ensure accurate regional analysis. Next, we handled `NA` values in the columns `New_cases` and `New_deaths` by following steps:
 
@@ -30,9 +30,11 @@ Our goal is to visualize the global impact of COVID-19 through two key visual re
 
     -   **Interpolation of NAs**: For other `NA` values within the dataset, apply the `na.approx()` function from the `zoo` package. This function approximates missing values using linear interpolation, typically filling each `NA` with the mean of its neighboring values.
 
+-   **Matching country name**: Adjusting specific country names in the dataset to match with function `joinCountryData2Map()`.
+
 -   **Saving Cleaned Data**:
 
-    -   **Country Data**: Save the dataset containing both the cumulative and new counts of cases and deaths for each country, as a CSV file named [01_COVID-19_global_data_country.csv](01_COVID-19_global_data_country.csv);
+    -   **Country Data**: Save the dataset containing both the cumulative and incremental counts of cases and deaths for each country, as a CSV file named [01_COVID-19_global_data_country.csv](01_COVID-19_global_data_country.csv);
 
     -   **World Data**: Compute and record the total number of daily and cumulative cases and deaths worldwide into another CSV file named [02_COVID-19_global_data_world.csv](02_COVID-19_global_data_world.csv).
 
@@ -50,12 +52,12 @@ Our aim is to merge two datasets into a single file that represents the number o
 
     -   Renaming `country` column to `Country` for consistency;
     -   Selecting focused columns `pop2023` and `pop2024`;
-    -   Transforming from a wide format to a long format using **`pivot_longer()`** function, so columns `pop2023` and `pop2024` will be converted into two new columns: `Year` (stores the year) and `pop` (stores the population figures);
+    -   Transforming from a wide format to a long format using `pivot_longer()` function, so columns `pop2023` and `pop2024` will be converted into two new columns: `Year` (stores the year) and `pop` (stores the population figures);
     -   Converting `Year` column values into numeric: `"pop2023"` becomes `"2023"` and `"pop2024"` becomes `"2024"`.
 
 -   **Preparing Data for 2020, 2021, and 2022**
 
-    -   Similarly, transforming **`population_df2`** from wide to long format, handling the years 2020, 2021, and 2022: `Year` (stores the year), `pop` (stores the population figures) and the prefix 'X' is removed;
+    -   Similarly, transforming `population_df2` from wide to long format, handling the years 2020, 2021, and 2022: `Year` (stores the year), `pop` (stores the population figures) and the prefix 'X' is removed;
     -   Converting `Year` column values into numeric;
     -   Renaming `Country.Name` column to `Country` for consistency;
     -   Selecting focused columns `Country`, `Year` and `pop`.

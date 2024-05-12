@@ -1,4 +1,4 @@
-This Dashboard mainly focuses on data from [WHO COVID-19 dashboard data](https://data.who.int/dashboards/covid19/data?n=c). We present some interactive visualizations of the global cumulative cases and deaths by country, as well as new cases and deaths. In addition, we further analyse global trends in new cases or deaths, regional differences in cases or deaths, and correlations between population and cases.
+This Dashboard mainly focuses on data from [WHO COVID-19 dashboard data](https://data.who.int/dashboards/covid19/data?n=c). We present some interactive visualizations of the global cumulative cases and deaths by country, as well as incremental cases and deaths. In addition, we further analyse global trends in new cases or deaths, regional differences in cases or deaths, and correlations between population and cases.
 
  
 
@@ -16,7 +16,7 @@ This section features maps that visualize cumulative cases or deaths for selecte
 <h4>Incremental Data</h4>
 <hr style="margin-top: 0;">
 
-At this section, we track the changes in new cases and deaths over time with line plots in a country. Users can interact with these plots by:
+At this section, we track the changes in incremental cases and deaths over time with line plots in a country. Users can interact with these plots by:
 
 -   **Date:** Users can adjust the time bar to select a time period of interest;
 -   **Choose a country:** Users have the option to select either a specific country or global data ("Total"), allowing for flexibility in viewing either detailed or aggregated information.
@@ -31,7 +31,7 @@ At this section, we track the changes in new cases and deaths over time with lin
 
 Three types of statistical analyses are performed on the COVID data in this section. Log transformations are applied in all three analyses to improve the clarity and interpretability of the visualizations:
 
--   **Worldwide Trends**: Observing changes in new cases or deaths globally;
+-   **Worldwide Trends**: Observing trends in new cases or deaths globally;
 -   **Regional Differences**: Visualizing differences in COVID-19 cases or deaths by region;
 -   **Correlation Analysis**: Investigating the relationship between COVID-19 cases and population size in various countries.
 

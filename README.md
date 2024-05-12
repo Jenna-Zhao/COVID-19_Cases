@@ -14,7 +14,7 @@
 
 </div>
 
--   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country.
+-   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country or worldwide.
 
 <div align="center">
 
@@ -28,7 +28,7 @@ The [**raw**](data/raw) folder contains raw data stored in CSV format:
 
 -   [01-COVID-19_global_data.csv](data/raw/01-COVID-19_global_data.csv) - This file contains weekly records of COVID-19 cases and deaths from May 1, 2020, to April 7, 2024, derived from the [WHO COVID-19 dashboard data](https://data.who.int/dashboards/covid19/data?n=o) on the website [World Health Organization Data](https://data.who.int/);
 
--   [02-population_countries.csv](data/raw/pctl_of_inc_state_w2.csv) - This file includes population numbers for each country for the years 2023 and 2024, sourced from the [World Population Review](https://worldpopulationreview.com/);
+-   [02-population_countries.csv](data/raw/02-population_countries.csv) - This file includes population numbers for each country for the years 2023 and 2024, sourced from the [World Population Review](https://worldpopulationreview.com/);
 
 -   [03-population_countries_before_22.csv](data/raw/03-population_countries_before_22.csv) - This file includes population data from 2020 to 2022 for each country, obtained from the [Data Bank, World Development Indicators](https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country=#advancedDownloadOptions).
 
@@ -62,7 +62,7 @@ For further details and an introduction to the dashboard, please refer to the do
 
 We conducted a further exploration of [worldwide trends](src/analysis/01_analysis_world), [regional differences](src/analysis/02_analysis_regional_diff), and the [correlation between population size and COVID-19 cases](src/analysis/03_analysis-correlation_with_poopulation). Our analyses revealed several key findings:
 
--   There is a continuation of the declining trends in both COVID-19 cases and deaths from 2024;
+-   There is a downward trend in both COVID-19 cases and deaths from 2024;
 
 -   There is a clear regional difference in the distribution of COVID-19 cases and deaths;
 
@@ -86,13 +86,13 @@ For detailed analysis and interpretation, please refer to the documents [world_t
 
 4.  **Analysis**
 
-    -   For a deep dive into the specific analyses conducted in this project, review the scripts [01_code-world_new_cases_deaths.R](src/analysis/01_analysis_world/01_code-world_new_cases_deaths.R), [01_code-regional_cumcases_cumdeaths.R](src/analysis/02_analysis_regional_diff/01_code-regional_cumcases_cumdeaths.R), and [01_code-corr_population_COVID.R](src/analysis/03_analysis-correlation_with_poopulation/01_code-corr_population_COVID.R). These scripts provide detailed steps used to reproduce the outputs presented in the dashboard.
+    -   For a specific analyses conducted in this project, review the scripts [01_code-world_new_cases_deaths.R](src/analysis/01_analysis_world/01_code-world_new_cases_deaths.R), [01_code-regional_cumcases_cumdeaths.R](src/analysis/02_analysis_regional_diff/01_code-regional_cumcases_cumdeaths.R), and [01_code-corr_population_COVID.R](src/analysis/03_analysis-correlation_with_poopulation/01_code-corr_population_COVID.R). These scripts provide detailed steps used to reproduce the outputs presented in the dashboard.
 
 5.  **Supplementary Documentation**
 
-    -   For textual parts related to the "Analysis" and "About" sections of the dashboard, refer to the Markdown files located in the [**analysis**](src/analysis) and [**about**](src/about) folders. These documents offer detailed descriptions that support the visual data representations.
+    -   For textual parts related to the "Analysis" and "About" sections of the dashboard, refer to the Markdown files located in the [**analysis**](src/analysis) and [**about**](src/about) folders. These documents provide detailed descriptions of the visualisations.
 
-Following these instructions will ensure that you can reproduce the analysis, understand the methodology, and interact with the visualizations as expected.
+Following these instructions will enable users to reproduce the analysis and interact with the visualizations as intended.
 
 ## License
 
