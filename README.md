@@ -1,4 +1,4 @@
-# COVID-19_Cases
+# COVID-19_Dashboard
 
 <!-- badges: start -->
 
