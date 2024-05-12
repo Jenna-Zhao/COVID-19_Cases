@@ -366,7 +366,7 @@ server = function(input, output, session) {
   ## add analysis file worldwide trends
   output$markdownText_world = renderUI({
     tags$div(class = "markdown-content",
-             includeMarkdown("../analysis/01_analysis_world/world.md"))
+             includeMarkdown("../analysis/01_analysis_world/world_trends.md"))
   })
 
   ## add analysis of regional difference
