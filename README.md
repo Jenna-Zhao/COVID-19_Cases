@@ -10,13 +10,17 @@
 
 <div align="center">
 
-<img src="photo/01_dashboard_cum.png" width="90%"/> \<\div\>
+<img src="photo/01_dashboard_cum.png" width="90%"/> 
+
+</div>
 
 -   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country.
 
 <div align="center">
 
-<img src="photo/02_dashboard_incremental.png" width="90%"/> \<\div\>
+<img src="photo/02_dashboard_incremental.png" width="90%"/> 
+
+</div>
 
 ## Data
 
