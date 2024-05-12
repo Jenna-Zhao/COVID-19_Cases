@@ -8,15 +8,15 @@
 
 -   For cumulative data, we utilize maps to illustrate the total number of cases or deaths across different regions for selected time periods;
 
-::: {align="center"}
-<img src="photo/01_dashboard_cum.png" width="90%"/>
-:::
+<div align="center">
+
+<img src="photo/01_dashboard_cum.png" width="90%"/> \<\div\>
 
 -   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country.
 
-::: {align="center"}
-<img src="photo/02_dashboard_incremental.png" width="90%"/>
-:::
+<div align="center">
+
+<img src="photo/02_dashboard_incremental.png" width="90%"/> \<\div\>
 
 ## Data
 
@@ -29,6 +29,8 @@ The [**raw**](data/raw) folder contains raw data stored in CSV format:
 -   [03-population_countries_before_22.csv](data/raw/03-population_countries_before_22.csv) - This file includes population data from 2020 to 2022 for each country, obtained from the [Data Bank, World Development Indicators](https://databank.worldbank.org/reports.aspx?source=2&series=SP.POP.TOTL&country=#advancedDownloadOptions).
 
 Additionally, the folder includes a detailed description ([About_data.md](data/raw/About_data.md)) of main variables for these three files.
+
+ 
 
 The [**derived**](data/derived) folder contains processed data files, which are utilized for creating visualizations and conducting [analysis](src/analysis) in the [Shiny app](src/dashboard):
 
@@ -86,7 +88,7 @@ For detailed analysis and interpretation, please refer to the documents [world_t
 
     -   For textual parts related to the "Analysis" and "About" sections of the dashboard, refer to the Markdown files located in the [**analysis**](src/analysis) and [**about**](src/about) folders. These documents offer detailed descriptions that support the visual data representations.
 
-Following these instructions will ensure that you can reproduce the analysis, understand the methodology, and interact with the visualizations as expected
+Following these instructions will ensure that you can reproduce the analysis, understand the methodology, and interact with the visualizations as expected.
 
 ## License
 
