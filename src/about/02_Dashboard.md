@@ -7,9 +7,9 @@ This Dashboard mainly focuses on data from [WHO COVID-19 dashboard data](https:/
 
 This section features maps that visualize cumulative cases or deaths for selected time periods. Users can interact with the map through various options to adjust the displayed data:
 
--   **Selecting Data Range:** Allows users to choose their period of interest;
--   **Type:** Enables selection between viewing the distribution of cumulative cases or deaths;
--   **Choose a Country:** Provides specific data on cases or deaths for the chosen country during the selected period.
+-   **Selecting Data Range:** Users can slide the time bar to select their period of interest;
+-   **Type:** Users can toggle between viewing cumulative cases or deaths;
+-   **Choose a Country:** Users can select a specific country to view detailed data on cases or deaths during the chosen period.
 
  
 
@@ -18,14 +18,15 @@ This section features maps that visualize cumulative cases or deaths for selecte
 
 At this section, we track the changes in new cases and deaths over time with line plots in a country. Users can interact with these plots by:
 
--   **Date:** Enables users to choose the time period they are interested in;
--   **Choose a country:** Allows selection for a country or global data, providing flexibility in viewing detailed or aggregated information.
+-   **Date:** Users can adjust the time bar to select a time period of interest;
+-   **Choose a country:** Users have the option to select either a specific country or global data ("Total"), allowing for flexibility in viewing either detailed or aggregated information.
 
-<span style="color:blue"> Note:</span> Due to the large dataset, it may take some time to run the entire visualisation
+<span style="color:blue"> *Note:* </span> Due to the large dataset, it may take some time to run the entire visualization.
 
  
 
 <h4>Analysis</h4>
+
 <hr style="margin-top: 0;">
 
 Three types of statistical analyses are performed on the COVID data in this section. Log transformations are applied in all three analyses to improve the clarity and interpretability of the visualizations:
@@ -35,5 +36,3 @@ Three types of statistical analyses are performed on the COVID data in this sect
 -   **Correlation Analysis**: Investigating the relationship between COVID-19 cases and population size in various countries.
 
  
-
-
