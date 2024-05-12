@@ -8,19 +8,19 @@ This dashboard is designed to visualize both cumulative and incremental COVID-19
 
 -   For cumulative data, we utilize maps to illustrate the total number of cases or deaths across different regions for selected time periods;
 
-<p style="text-align:center">
+<div align="center">
 
-<img src="photo/01_dashboard_cum.png" width="70%"/>
+  <img src="photo/01_dashboard_cum.png" width="70%"/>
 
-</p>
+</div>
 
 -   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country.
 
-<p style="text-align:center">
+<div align="center">
 
-<img src="photo/02_dashboard_incremental.png" width="70%"/>
+  <img src="photo/02_dashboard_incremental.png" width="70%"/>
 
-</p>
+</div>
 
 ## [Data](data)
 
