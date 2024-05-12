@@ -1,5 +1,6 @@
 # -----------------------------------------------------------
 # Script Name: 01_COVID-19_global_data_clean
+#
 # Purpose: This script is used to clean the raw data "COVID-19_global_data"
 # help us draw plots more conveniently
 # -----------------------------------------------------------
