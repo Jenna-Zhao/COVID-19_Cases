@@ -185,8 +185,10 @@ ui = fluidPage(
                                    plotOutput("plotNewDeaths"))
                           )
                           )),
+             ## Analysis section
              navbarMenu("Analysis",
-                        tabPanel("Worldwide",
+                        ### Worldwide Trends
+                        tabPanel("Worldwide Trends",
                                  div(class = "section-title",
                                      h3("Analysis of Worldwide COVID-19 Case and Death")),
                                  ### add background colour
@@ -194,6 +196,7 @@ ui = fluidPage(
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_world")))))
                                  ),
+                        ### Regional Differences
                         tabPanel("Regional Difference",
                                  div(class = "section-title",
                                      h3("Analysis of Regional Differences in COVID-19 Cases and Deaths")),
@@ -202,6 +205,7 @@ ui = fluidPage(
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_regional")))))
                         ),
+                        ### Correlation
                         tabPanel("Correlation with Population",
                                  div(class = "section-title",
                                      h3("Analysis of Correlation between Population and COVID-19 New Cases")),
@@ -210,25 +214,24 @@ ui = fluidPage(
                                      fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
                                                                           uiOutput("markdownText_corr")))))
                         )),
+             ## About section
              navbarMenu("About",
-                      tabPanel("About COVID-19",
-                               div(class = "section-title",
-                                   h3("About COVID-19")),
-                               ### add background colour
-                               div(class = "panel-background",
-                                   fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
-                                                                        uiOutput("markdownText_covid")))))
-                      ),
-                      tabPanel("About this Dashboard",
-                               div(class = "section-title",
-                                   h3("About this Dashboard")),
-                               ### add background colour
-                               div(class = "panel-background",
-                                   fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
-                                                                        uiOutput("markdownText_dashboard")))))
-                      )
-                      ),
-  ))
+                        ### introduce COVID-19
+                        tabPanel("About COVID-19",
+                                 div(class = "section-title", h3("About COVID-19")),
+                                 ### add background colour
+                                 div(class = "panel-background",
+                                     fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                          uiOutput("markdownText_covid")))))
+                                 ),
+                        ### Introduction
+                        tabPanel("About this Dashboard",
+                                 div(class = "section-title", h3("About this Dashboard")),
+                                 ### add background colour
+                                 div(class = "panel-background",
+                                     fluidRow(column(width = 12, tags$div(class = "markdown-section markdown-content",
+                                                                          uiOutput("markdownText_dashboard")))))
+                                 ))))
 
 # define server
 server = function(input, output, session) {
@@ -360,36 +363,35 @@ server = function(input, output, session) {
             axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0, unit = "pt")))
   })
 
+  ## add analysis file worldwide trends
   output$markdownText_world = renderUI({
     tags$div(class = "markdown-content",
              includeMarkdown("../analysis/01_analysis_world/world.md"))
-
   })
 
+  ## add analysis of regional difference
   output$markdownText_regional = renderUI({
     tags$div(class = "markdown-content",
              includeMarkdown("../analysis/02_analysis_regional_diff/regional_diff.md"))
-
   })
 
+  ## add analysis of correlation
   output$markdownText_corr = renderUI({
     tags$div(class = "markdown-content",
              includeMarkdown("../analysis/03_analysis-correlation_with_poopulation/correlation.md"))
-
   })
 
+  ## Introduce COVID-19
   output$markdownText_covid = renderUI({
     tags$div(class = "markdown-content",
              includeMarkdown("../about/01_COVID.md"))
-
   })
 
+  ## Introduction of this dashboard
   output$markdownText_dashboard = renderUI({
     tags$div(class = "markdown-content",
              includeMarkdown("../about/02_Dashboard.md"))
-
   })
-
 }
 
 # Start the Shiny app with defined UI and server functions
