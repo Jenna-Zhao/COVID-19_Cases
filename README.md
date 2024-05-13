@@ -91,6 +91,10 @@ For detailed analysis and interpretation, please refer to the documents [world_t
 5.  **Supplementary Documentation**
 
     -   For textual parts related to the "Analysis" and "About" sections of the dashboard, refer to the Markdown files located in the [**analysis**](src/analysis) and [**about**](src/about) folders. These documents provide detailed descriptions of the visualisations.
+    
+6.  **Deploy your first application**
+
+    -   Finally, we published the application by using [shinyapps.io](https://www.shinyapps.io/).
 
 Following these instructions will enable users to reproduce the analysis and interact with the visualizations as intended.
 
