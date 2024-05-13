@@ -4,27 +4,21 @@
 
 <!-- badges: end -->
 
----
-The Dashboard link: [https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/]( https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/)
----
+> The Dashboard link: <https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/>
 
 [COVID-19](https://en.wikipedia.org/wiki/COVID-19), officially known as the coronavirus disease 2019, is a contagious disease caused by the coronavirus SARS-CoV-2. This dashboard is designed to visualize both cumulative and incremental COVID-19 cases or deaths worldwide, spanning from May 1, 2020, to April 7, 2024. It is hosted on shinyapps.io, allowing for seamless online operation.
 
 -   For cumulative data, we utilize maps to illustrate the total number of cases or deaths across different regions for selected time periods;
 
-<div align="center">
-
-<img src="photo/01_dashboard_cum.png" width="90%"/> 
-
-</div>
+::: {align="center"}
+<img src="photo/01_dashboard_cum.png" width="90%"/>
+:::
 
 -   For incremental data, line plots are used to track the fluctuations in new cases and deaths over time in a specific country or worldwide.
 
-<div align="center">
-
-<img src="photo/02_dashboard_incremental.png" width="90%"/> 
-
-</div>
+::: {align="center"}
+<img src="photo/02_dashboard_incremental.png" width="90%"/>
+:::
 
 ## Data
 
@@ -95,7 +89,7 @@ For detailed analysis and interpretation, please refer to the documents [world_t
 5.  **Supplementary Documentation**
 
     -   For textual parts related to the "Analysis" and "About" sections of the dashboard, refer to the Markdown files located in the [**analysis**](src/analysis) and [**about**](src/about) folders. These documents provide detailed descriptions of the visualisations.
-    
+
 6.  **Deploy your first application**
 
     -   Finally, we published the application following the steps in [shinyapps.io](https://www.shinyapps.io/).
