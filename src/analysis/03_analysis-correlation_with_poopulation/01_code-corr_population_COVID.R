@@ -10,6 +10,7 @@
 # Install and load necessary packages
 library(rworldmap)  # For mapping geographic data
 library(dplyr)      # For data manipulation
+library(ggplot2)      # For data plotting
 
 # Load and prepare population and COVID-19 data
 df_covid = read.csv("data/derived/01_COVID-19_global_data_country.csv")
