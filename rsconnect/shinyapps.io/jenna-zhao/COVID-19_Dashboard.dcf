@@ -1,0 +1,12 @@
+name: COVID-19_Dashboard
+title: COVID-19_Dashboard
+username: jenna-zhao
+account: jenna-zhao
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11991051
+bundleId: 8609422
+url: https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

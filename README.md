@@ -4,6 +4,10 @@
 
 <!-- badges: end -->
 
+---
+The Dashboard link: [https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/]( https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/)
+---
+
 [COVID-19](https://en.wikipedia.org/wiki/COVID-19), officially known as the coronavirus disease 2019, is a contagious disease caused by the coronavirus SARS-CoV-2. This dashboard is designed to visualize both cumulative and incremental COVID-19 cases or deaths worldwide, spanning from May 1, 2020, to April 7, 2024. It is hosted on shinyapps.io, allowing for seamless online operation.
 
 -   For cumulative data, we utilize maps to illustrate the total number of cases or deaths across different regions for selected time periods;
@@ -36,7 +40,7 @@ Additionally, the folder includes a detailed description ([About_data.md](data/r
 
  
 
-The [**derived**](data/derived) folder contains processed data files, which are utilized for creating visualizations and conducting [analysis](src/analysis) in the [Shiny app](src/dashboard):
+The [**derived**](data/derived) folder contains processed data files, which are utilized for creating visualizations and conducting [analysis](src/analysis) in the [Shiny app](app.R):
 
 -   [01_COVID-19_global_data_country.csv](data/derived/01_COVID-19_global_data_country.csv) - This file contains cleaned COVID-19 data aggregated by country;
 
@@ -50,7 +54,7 @@ For detailed information on the data process, please refer to [derived_data.md](
 
 ## Interactive Visualization
 
-In this dashboard, we have developed a [Shiny app](src/dashboard/app.R) to visualize COVID-19 data effectively.
+In this dashboard, we have developed a [Shiny app](app.R) to visualize COVID-19 data effectively.
 
 -   For cumulative data, users can select their interested time period, data type (cases or deaths), and view the exact figures for any specific country.
 
@@ -82,7 +86,7 @@ For detailed analysis and interpretation, please refer to the documents [world_t
 
 3.  **Viewing the Dashboard**
 
-    -   Execute [app.R](src/dashboard/app.R) to launch the final dashboard. This script activates the Shiny application, enabling interactive visualization.
+    -   Execute [app.R](app.R) to launch the final dashboard. This script activates the Shiny application, enabling interactive visualization.
 
 4.  **Analysis**
 
@@ -94,7 +98,7 @@ For detailed analysis and interpretation, please refer to the documents [world_t
     
 6.  **Deploy your first application**
 
-    -   Finally, we published the application by using [shinyapps.io](https://www.shinyapps.io/).
+    -   Finally, we published the application following the steps in [shinyapps.io](https://www.shinyapps.io/).
 
 Following these instructions will enable users to reproduce the analysis and interact with the visualizations as intended.
 
