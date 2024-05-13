@@ -4,7 +4,11 @@
 
 <!-- badges: end -->
 
-> The Dashboard link: <https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/>
+------------------------------------------------------------------------
+
+The Dashboard link: <https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/>
+
+------------------------------------------------------------------------
 
 [COVID-19](https://en.wikipedia.org/wiki/COVID-19), officially known as the coronavirus disease 2019, is a contagious disease caused by the coronavirus SARS-CoV-2. This dashboard is designed to visualize both cumulative and incremental COVID-19 cases or deaths worldwide, spanning from May 1, 2020, to April 7, 2024. It is hosted on shinyapps.io, allowing for seamless online operation.
 
