@@ -1,4 +1,4 @@
-The following plots illustrate the trends of new COVID-19 cases and deaths over time, capturing the volatility and rebound of the pandemic at various intervals.
+The following plots illustrate the trends of new COVID-19 cases and deaths over time, capturing the volatility and rebound of the pandemic over time.
 
 The left plot tracks new cases and shows clear spikes, especially in mid-2021, early 2022, and a massive spike in mid-2023. These peaks potentially correspond to the appearance of new variants or the relaxation of public health measures, which led to increased transmission rates. After the last peak in 2023, the trend shows a significant decrease, indicating a reduction in cases. This decline could be due to increased immunity, improved disease management, or seasonal effects.
 

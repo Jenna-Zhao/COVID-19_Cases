@@ -10,7 +10,7 @@
 
 # list of packages required for the project
 packages = c("shiny", "shinythemes", "tidyverse",
-             "knitr",  "dplyr", "zoo", "htmltools")
+             "knitr",  "dplyr", "zoo", "htmltools", "markdown")
 
 # function to check and install packages
 package_check = lapply(packages, FUN = function(x) {

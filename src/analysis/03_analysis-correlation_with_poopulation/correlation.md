@@ -10,7 +10,7 @@ The right map illustrates the distribution of COVID-19 cases from 2023 to 2024, 
 
 </p>
 
-Additionally, we observed a statistically relationship between the logarithm of population sizes and the logarithm of annual changes in COVID-19 cases. The positive trend shown by the linear regression line (with a correlation coefficient \$\\rho\$ about 0.3902) suggests that as the number of COVID-19 cases increases as the population increases. This correlation highlights the challenges associated with controlling the spread of the virus in densely populated areas.
+Additionally, we observed a statistically relationship between the logarithm of population sizes and the logarithm of annual changes in COVID-19 cases. The positive trend shown by the linear regression line (with a correlation coefficient about 0.3902) suggests that as the number of COVID-19 cases increases as the population increases. This correlation highlights the challenges associated with controlling the spread of the virus in densely populated areas.
 
 As global populations grow, especially in urban areas, challenges in managing infectious are expected to increase, requiring a stronger healthcare infrastructure and proactive pandemic planning. Historical data from 2023 to 2024 indicates the persistence of disease hotspots in densely populated areas, suggesting these patterns will continue without significant public health strategy changes or improvements in vaccine coverage. Therefore, efforts to manage healthcare capacity and public health interventions should continue to be reinforced, with a particular focus on enhancing healthcare accessibility and disease surveillance in densely populated regions. This approach is essential for effectively managing future health crises.
 

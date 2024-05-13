@@ -40,7 +40,7 @@ Additionally, the folder includes a detailed description ([About_data.md](data/r
 
  
 
-The [**derived**](data/derived) folder contains processed data files, which are utilized for creating visualizations and conducting [analysis](src/analysis) in the [Shiny app](app.R):
+The [**derived**](data/derived) folder contains processed data files, which are utilized for creating visualizations and conducting [analysis](src/analysis) in the [Shiny app](https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/):
 
 -   [01_COVID-19_global_data_country.csv](data/derived/01_COVID-19_global_data_country.csv) - This file contains cleaned COVID-19 data aggregated by country;
 
@@ -54,7 +54,7 @@ For detailed information on the data process, please refer to [derived_data.md](
 
 ## Interactive Visualization
 
-In this dashboard, we have developed a [Shiny app](app.R) to visualize COVID-19 data effectively.
+In this dashboard, we have developed a [Shiny app](https://jenna-zhao.shinyapps.io/COVID-19_Dashboard/) to visualize COVID-19 data effectively.
 
 -   For cumulative data, users can select their interested time period, data type (cases or deaths), and view the exact figures for any specific country.
 
